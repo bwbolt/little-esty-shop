@@ -1,0 +1,13 @@
+<%= render partial: "shared/header" %>
+<hr>
+
+<div id="discounts">
+  <% @discounts.each do |discount| %>
+    <div id="discount-<%= discount.id %>">
+      <p><%= discount.percentage %>
+        <%= discount.threshold %>
+        <%= link_to "View Discount", merchant_bulk_discounts_path(@merchant, discount) %>
+      </p>
+    </div>
+  <% end %>
+</div>
