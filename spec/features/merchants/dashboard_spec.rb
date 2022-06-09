@@ -60,7 +60,7 @@ RSpec.describe 'Merchant Dashboard Index', type: :feature do
     @invoice_13.transactions.create!(credit_card_number: '6654405418249644', result: 'failed')
   end
 
-  it 'should display the name of the merchant', :vcr do
+  it 'should display the name of the merchant' do
     visit merchant_dashboard_index_path(@merchant.id)
 
     within '#name' do
@@ -68,14 +68,14 @@ RSpec.describe 'Merchant Dashboard Index', type: :feature do
     end
   end
 
-  it 'should have links to merchant items index and merchant invoices index', :vcr do
+  it 'should have links to merchant items index and merchant invoices index' do
     visit merchant_dashboard_index_path(@merchant.id)
 
     expect(page).to have_link('My Items')
     expect(page).to have_link('My Invoices')
   end
 
-  it 'should display top 5 customers with number of successful transactions', :vcr do
+  it 'should display top 5 customers with number of successful transactions' do
     visit merchant_dashboard_index_path(@merchant.id)
 
     within "#id-#{@customer_4.id}" do
@@ -114,7 +114,7 @@ RSpec.describe 'Merchant Dashboard Index', type: :feature do
     end
   end
 
-  it 'should display unshipped items', :vcr do
+  it 'should display unshipped items' do
     visit merchant_dashboard_index_path(@merchant.id)
 
     within '#id-0' do
@@ -136,7 +136,7 @@ RSpec.describe 'Merchant Dashboard Index', type: :feature do
     end
   end
 
-  it 'has repo name from gitgub', :vcr do
+  it 'has repo name from gitgub' do
     visit merchant_dashboard_index_path(@merchant.id)
 
     expect(page).to have_content('Little Esty Shop')

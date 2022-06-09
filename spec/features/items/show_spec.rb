@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'merchant item show page' do
-  it 'shows all item attributes', :vcr do
+  it 'shows all item attributes' do
     merchant_1 = Merchant.create(name: "Ray's Handmade Jewelry")
     item_1 = merchant_1.items.create!(name: 'Dangly Earings', description: 'They tickle your neck.', unit_price: 1500)
 
@@ -12,7 +12,7 @@ RSpec.describe 'merchant item show page' do
     expect(page).to have_content('$15.00')
   end
 
-  it 'has a link to update item info', :vcr do
+  it 'has a link to update item info' do
     merchant_1 = Merchant.create(name: "Ray's Handmade Jewelry")
     item_1 = merchant_1.items.create!(name: 'Dangly Earings', description: 'They tickle your neck.', unit_price: 1500)
 

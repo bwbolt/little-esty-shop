@@ -50,7 +50,7 @@ RSpec.describe 'Admin Merchant Update', type: :feature do
     visit admin_merchant_path(@m1)
   end
 
-  it 'should have links to it from admin/show to update that merchant', :vcr do
+  it 'should have links to it from admin/show to update that merchant' do
     within '#name' do
       expect(page).to have_content(@m1.name)
     end

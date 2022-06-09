@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'item edit page' do
-  it 'can edit an item', :vcr do
+  it 'can edit an item' do
     merchant_1 = Merchant.create(name: "Ray's Handmade Jewelry")
     item_1 = merchant_1.items.create!(name: 'Dangly Earings', description: 'They tickle your neck.', unit_price: 1500)
 

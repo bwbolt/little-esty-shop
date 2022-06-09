@@ -50,7 +50,7 @@ RSpec.describe 'Admin Merchant Index', type: :feature do
     visit admin_merchants_path
   end
 
-  it 'should display all merchants by name', :vcr do
+  it 'should display all merchants by name' do
     expect(page).to have_link(@m1.name)
     expect(page).to have_link(@m2.name)
     expect(page).to have_link(@m3.name)
@@ -59,7 +59,7 @@ RSpec.describe 'Admin Merchant Index', type: :feature do
     expect(page).to have_link(@m6.name)
   end
 
-  it 'should allow disabling and enabling a merchant', :vcr do
+  it 'should allow disabling and enabling a merchant' do
     within "#disabled-#{@m1.id}" do
       click_on 'Enable'
     end
@@ -72,7 +72,7 @@ RSpec.describe 'Admin Merchant Index', type: :feature do
     end
   end
 
-  it 'should have two sections for Enabled/Disabled Merchants', :vcr do
+  it 'should have two sections for Enabled/Disabled Merchants' do
     within '#disabled' do
       within "#disabled-#{@m1.id}" do
         click_on 'Enable'
@@ -87,7 +87,7 @@ RSpec.describe 'Admin Merchant Index', type: :feature do
     end
   end
 
-  it 'should have a link to a working new merchant form', :vcr do
+  it 'should have a link to a working new merchant form' do
     expect(page).to have_content('Create New Merchant')
 
     click_on 'Create New Merchant'
@@ -104,7 +104,7 @@ RSpec.describe 'Admin Merchant Index', type: :feature do
     end
   end
 
-  it 'should have a list of top 5 merchants by revenue with that metric displayed', :vcr do
+  it 'should have a list of top 5 merchants by revenue with that metric displayed' do
     within '#top_five_merchants' do
       expect(page).to have_link(@m1.name)
       expect(page).to have_link(@m2.name)
@@ -118,7 +118,7 @@ RSpec.describe 'Admin Merchant Index', type: :feature do
     end
   end
 
-  it 'should have a top selling day for the top 5 merchants', :vcr do
+  it 'should have a top selling day for the top 5 merchants' do
     within "#top_day-#{@m1.id}" do
       expect(page).to have_content('03/25/12')
     end
