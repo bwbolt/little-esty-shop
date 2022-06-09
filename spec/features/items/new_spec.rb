@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'create item page' do
-  it 'can create an item', :vcr do
+  it 'can create an item' do
     merchant_1 = Merchant.create(name: "Ray's Handmade Jewelry")
     item_2 = merchant_1.items.create!(name: 'Gold Ring', description: 'There are many rings of power...',
                                       unit_price: 4999)

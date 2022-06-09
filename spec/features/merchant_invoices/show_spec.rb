@@ -20,7 +20,7 @@ RSpec.describe 'Merchant Invoice Show page' do
                                                     created_at: Time.parse('2012-03-28 14:54:09 UTC'))
   end
 
-  it 'displays the invoice information in the show page', :vcr do
+  it 'displays the invoice information in the show page' do
     visit merchant_invoice_path(@merchant, @invoice_1)
 
     within "#invoice-header-#{@invoice_1.id}" do
@@ -34,7 +34,7 @@ RSpec.describe 'Merchant Invoice Show page' do
     end
   end
 
-  it 'displays the invoice items information', :vcr do
+  it 'displays the invoice items information' do
     visit merchant_invoice_path(@merchant, @invoice_1)
 
     within "#invoice-items-#{@invoice_item_1.id}" do
@@ -45,7 +45,7 @@ RSpec.describe 'Merchant Invoice Show page' do
     end
   end
 
-  it 'displays the total revenue of the items on the invoice', :vcr do
+  it 'displays the total revenue of the items on the invoice' do
     visit merchant_invoice_path(@merchant, @invoice_1)
 
     within "#invoice-#{@invoice_1.id}" do
@@ -53,7 +53,7 @@ RSpec.describe 'Merchant Invoice Show page' do
     end
   end
 
-  it 'can update the status of a invoice item', :vcr do
+  it 'can update the status of a invoice item' do
     visit merchant_invoice_path(@merchant, @invoice_1)
     # invoice item 1
     within "#invoice-items-#{@invoice_item_1.id}" do
@@ -80,7 +80,7 @@ RSpec.describe 'Merchant Invoice Show page' do
     end
   end
 
-  it 'can update the status of a invoice item', :vcr do
+  it 'can update the status of a invoice item' do
     visit merchant_invoice_path(@merchant, @invoice_1)
     # invoice item 1
     within "#invoice-items-#{@invoice_item_3.id}" do

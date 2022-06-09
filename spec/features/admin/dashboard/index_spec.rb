@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'admin dashboard' do
   describe 'headers' do
-    it 'has an admin header', :vcr do
+    it 'has an admin header' do
       visit admin_dashboard_path
 
       within '#nav' do
@@ -10,7 +10,7 @@ RSpec.describe 'admin dashboard' do
       end
     end
 
-    it 'has links to admin/merchants', :vcr do
+    it 'has links to admin/merchants' do
       visit admin_dashboard_path
 
       within '#nav' do
@@ -20,7 +20,7 @@ RSpec.describe 'admin dashboard' do
       end
     end
 
-    it 'has links to admin/invoices', :vcr do
+    it 'has links to admin/invoices' do
       visit admin_dashboard_path
 
       within '#nav' do
@@ -63,7 +63,7 @@ RSpec.describe 'admin dashboard' do
       @invoice_4.transactions.create!(credit_card_number: '6654405418249632', result: 'success')
     end
 
-    it 'shows the top 5 customers and their order count', :vcr do
+    it 'shows the top 5 customers and their order count' do
       visit admin_dashboard_path
 
       expect(page).to have_content("#{@customer_1.first_name} #{@customer_1.last_name} 4")
@@ -72,7 +72,7 @@ RSpec.describe 'admin dashboard' do
       expect(page).to have_content("#{@customer_4.first_name} #{@customer_4.last_name} 1")
     end
 
-    it 'shows a section of incomplete invoices', :vcr do
+    it 'shows a section of incomplete invoices' do
       visit admin_dashboard_path
       within '#incomplete_invoices' do
         expect(page).to have_content(@ii_2.id.to_s)
@@ -85,7 +85,7 @@ RSpec.describe 'admin dashboard' do
       expect(current_path).to eq(admin_invoices_path(@ii_2.id))
     end
 
-    it 'shows dates next to the incomplete invoices', :vcr do
+    it 'shows dates next to the incomplete invoices' do
       visit admin_dashboard_path
       within '#incomplete_invoices' do
         expected_date1 = 'Tuesday, March 27 2012'

@@ -26,7 +26,7 @@ RSpec.describe 'Admin Invoice Index page' do
     @invoice_1.transactions.create!(credit_card_number: '4654405418249635', result: 'success')
   end
 
-  it 'lists each invoice id, and their ids', :vcr do
+  it 'lists each invoice id, and their ids' do
     visit admin_invoices_path
 
     within '#invoices' do
@@ -36,7 +36,7 @@ RSpec.describe 'Admin Invoice Index page' do
     end
   end
 
-  it 'links each invoice to its invoice show page', :vcr do
+  it 'links each invoice to its invoice show page' do
     visit admin_invoices_path
     click_on "Invoice ##{@invoice_1.id}"
     expect(current_path).to eq(admin_invoice_path(@invoice_1.id))

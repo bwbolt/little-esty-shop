@@ -24,7 +24,7 @@ RSpec.describe 'Merchant Invoice page' do
     @invoice_1.transactions.create!(credit_card_number: '4654405418249635', result: 'success')
   end
 
-  it 'can display all of the invoices that include at least one of my merchants items, and their ids', :vcr do
+  it 'can display all of the invoices that include at least one of my merchants items, and their ids' do
     visit merchant_invoices_path(@merchant.id)
 
     within '#heading' do
@@ -40,7 +40,7 @@ RSpec.describe 'Merchant Invoice page' do
     end
   end
 
-  it 'Links each invoice with its specific show page', :vcr do
+  it 'Links each invoice with its specific show page' do
     visit merchant_invoices_path(@merchant.id)
 
     click_on "Invoice ##{@invoice_1.id}"
@@ -48,7 +48,7 @@ RSpec.describe 'Merchant Invoice page' do
     expect(current_path).to eq(merchant_invoice_path(@merchant, @invoice_1))
   end
 
-  it 'Links each invoice with its specific show page', :vcr do
+  it 'Links each invoice with its specific show page' do
     visit merchant_invoices_path(@merchant.id)
 
     click_on "Invoice ##{@invoice_7.id}"
