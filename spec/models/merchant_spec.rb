@@ -7,13 +7,12 @@ RSpec.describe Merchant, type: :model do
     it { should have_many(:invoices).through(:invoice_items) }
     it { should have_many(:transactions).through(:invoices) }
     it { should have_many(:customers).through(:invoices) }
+    it { should have_many(:bulk_discounts) }
   end
 
   describe 'validations' do
     it { should validate_presence_of(:name) }
   end
- 
-
 
   describe 'class methods' do
     before :each do
@@ -127,7 +126,7 @@ RSpec.describe Merchant, type: :model do
       expect(actual).to eq([@c2.first_name, @c1.first_name])
     end
 
-    it "#unshipped_items" do
+    it '#unshipped_items' do
       actual = @m2.unshipped_items.map do |invoice|
         invoice.item[:name]
       end

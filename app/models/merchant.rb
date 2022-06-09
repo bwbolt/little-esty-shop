@@ -6,6 +6,7 @@ class Merchant < ApplicationRecord
   has_many :invoices, through: :invoice_items, dependent: :destroy
   has_many :customers, through: :invoices, dependent: :destroy
   has_many :transactions, through: :invoices, dependent: :destroy
+  has_many :bulk_discounts
 
   def fave_customers
     customers.joins(invoices: :transactions)
@@ -18,7 +19,7 @@ class Merchant < ApplicationRecord
   end
 
   def unshipped_items
-    invoice_items.joins(:invoice).where(status: 1).order("invoices.created_at")
+    invoice_items.joins(:invoice).where(status: 1).order('invoices.created_at')
   end
 
   def self.top_five_merchants
