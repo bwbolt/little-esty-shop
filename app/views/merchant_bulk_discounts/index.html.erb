@@ -11,6 +11,7 @@
         units, get a
         <%= discount.percentage %>% discount.
         <%= link_to "View Discount", merchant_bulk_discounts_path(@merchant, discount) %>
+        <%= link_to "Delete Discount", merchant_bulk_discount_path(@merchant, discount), method: :delete%>
       </p>
     </div>
   <% end %>
