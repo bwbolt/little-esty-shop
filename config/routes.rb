@@ -3,9 +3,6 @@ Rails.application.routes.draw do
   root to: 'welcome#index'
 
   resources :merchants do
-    # get '/bulk_discounts', to: 'merchant_bulk_discounts#index'
-    # get '/bulk_discounts/:id', to: 'merchant_bulk_discounts#show'
-    # get '/bulk_discounts/new', to: 'merchant_bulk_discounts#new'
     resources :bulk_discounts, controller: 'merchant_bulk_discounts',
                                only: %i[index show new create destroy edit update]
     resources :items, only: %i[index show edit update new create]
