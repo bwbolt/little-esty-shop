@@ -29,7 +29,7 @@ RSpec.describe Invoice, type: :model do
                                     created_at: Time.parse('2012-03-27 14:54:09 UTC'))
       @item_2.invoice_items.create!(invoice_id: @invoice_1.id, quantity: 1, unit_price: 375, status: 'packaged',
                                     created_at: Time.parse('2012-03-28 14:54:09 UTC'))
-      expect(@invoice_1.total_revenue).to eq(15.75)
+      expect(@invoice_1.total_revenue).to eq(1575)
     end
 
     it '#best_day' do
