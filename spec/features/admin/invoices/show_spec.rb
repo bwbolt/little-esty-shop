@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe 'Admin Invoice Show page' do
   before :each do
     @merchant = Merchant.create!(name: 'Brylan')
+    @discount1 = @merchant.bulk_discounts.create(threshold: 3, percentage: 10)
+    @discount2 = @merchant.bulk_discounts.create(threshold: 5, percentage: 15)
     @item_1 = @merchant.items.create!(name: 'Pencil', unit_price: 500, description: 'Writes things.')
     @item_2 = @merchant.items.create!(name: 'Pen', unit_price: 400, description: 'Writes things, but dark.')
     @item_3 = @merchant.items.create!(name: 'Marker', unit_price: 400,
@@ -79,7 +81,6 @@ RSpec.describe 'Admin Invoice Show page' do
     click_on('Update Invoice Status')
 
     expect(current_path).to eq(admin_invoice_path(@invoice_7))
-    
 
     expect(page).to have_content('in progress')
   end
@@ -94,7 +95,13 @@ RSpec.describe 'Admin Invoice Show page' do
 
     expect(current_path).to eq(admin_invoice_path(@invoice_5))
 
-
     expect(page).to have_content('cancelled')
+  end
+
+  it 'displays the ammount of discounted revenue made by the invoice' do
+    visit admin_invoice_path(@invoice_1)
+    within "#invoice-#{@invoice_1.id}" do
+      expect(page).to have_content("Discounted Revenue: $#{@invoice_1.discounted_revenue.to_i}")
+    end
   end
 end
