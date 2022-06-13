@@ -29,7 +29,10 @@ class InvoiceItem < ApplicationRecord
 
   def add_discount
     bulk_discounts.order(threshold: :desc).each do |discount|
-      self.bulk_discount_id = discount.id if quantity >= discount.threshold
+      if quantity >= discount.threshold
+        self.bulk_discount_id = discount.id
+        break
+      end
     end
   end
 end
