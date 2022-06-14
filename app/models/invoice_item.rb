@@ -16,13 +16,17 @@ class InvoiceItem < ApplicationRecord
 
   def self.discounted_revenue
     distinct.map do |item|
-      if !item.bulk_discount_id.nil?
-        discount = BulkDiscount.find(item[:bulk_discount_id])
-        item.quantity * item.unit_price * (100 - discount.percentage) / 100
-      else
-        item.quantity * item.unit_price
-      end
+      item.calculated_cost
     end.sum
+  end
+
+  def calculated_cost
+    if !bulk_discount_id.nil?
+      discount = BulkDiscount.find(bulk_discount_id)
+      quantity * unit_price * (100 - discount.percentage) / 100
+    else
+      quantity * unit_price
+    end
   end
 
   private
